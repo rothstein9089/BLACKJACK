@@ -18,7 +18,6 @@ class Players:
 
 players = Players()
 
-
 class Game:
 
     def player_turn(self):
@@ -29,11 +28,11 @@ class Game:
                 pass
 
             if sum(players.user_hand) < 21:
-                choice = input("would you like another card? ").lower()
+                choice = input("Would you like another card? ").lower()
                 if choice == 'y':
                     add = int(players.draw_card())
                     players.user_hand.append(add)
-                    print(f"You have {players.user_hand}")
+                    print(f"You have {sum(players.user_hand)}. ----{players.user_hand}")
                 else:
                     break
             elif sum(players.user_hand) > 21:
@@ -69,16 +68,28 @@ class Game:
         elif total_user_hand == 21:  # Compare the total hand value with 21
             print(f'User won! with a {players.user_hand}')
         elif total_user_hand > 21:  # Compare the total hand value with 21
-            print(f'Comp won! with a {players.comp_hand}. You had {players.user_hand}')
+            print(f'Comp won! with a {players.comp_hand}. You had {sum(players.user_hand)}')
         elif players.comp_hand > 21:
-            print(f'User won! with a {players.user_hand}. The computer had {players.comp_hand}')
+            print(f'User won! with a {sum(players.user_hand)}. The computer had {players.comp_hand}')
         elif total_user_hand > players.comp_hand:
             print(f'User won with a {players.user_hand}. Comp had {players.comp_hand}')
+        elif total_user_hand == players.comp_hand:
+            print(f'Tie: You had a {sum(players.user_hand)}. User had a {sum(players.comp_hand)}')
         else:
-            print(f'Comp won with a {players.comp_hand}. User had {[players.user_hand]}')
+            print(f'Comp won with a {players.comp_hand}. User had {sum(players.user_hand)}')
 
 
 game = Game()
 game.tally_total()
+
+
+
+
+
+
+
+
+
+
 
 
